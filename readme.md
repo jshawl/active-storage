@@ -37,10 +37,10 @@ p.save();
 Post.find( 1 );
 ```
 
-### `.find_by`
+### `.findBy`
 
 ```js
-Post.find_by( {name: "Jesse"} );
+Post.findBy( {name: "Jesse"} );
 ```
 
 ### `.where`
@@ -60,8 +60,8 @@ Post.all();
 p.destroy();
 ```
 
-### `.destroy_all`
+### `.destroyAll`
 
 ```js
-Post.destroy_all();
+Post.destroyAll();
 ```

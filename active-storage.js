@@ -34,7 +34,7 @@ ActiveStorage.prototype = {
   find: function( id ){
     return _.where( this.all(), {id: id} )[0];
   },
-  find_by: function( predicate ){
+  findBy: function( predicate ){
     return _.find( this.all(), predicate ); 
   },
   where: function( predicate ){
@@ -48,7 +48,7 @@ ActiveStorage.prototype = {
     ActiveStorage.prototype.all = this.all;
     localStorage.setItem(this.kind, JSON.stringify( this.all ));
   },
-  destroy_all: function(){
+  destroyAll: function(){
     localStorage.setItem( this.kind, "[]" );
   }
 };
