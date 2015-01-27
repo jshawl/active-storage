@@ -13,9 +13,11 @@
     p.save();
 
     Post.create({name: "Jewely", age: 26});
-    var p = Post.new({name: "Jewely", age: 27});
-    p.save();
-    console.log(Post.all);
+    //console.log(Post.all);
+    var post = Post.find_by( {name: "Kesse"} );
+    //console.log( post );
+    //post.destroy();
+    console.log( Post.all )
 
   </script>
   </body>
