@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <head>
+  
+  </head>
+  <body>
+  <script src='active-storage.js'></script>
+  <script>
+    var Post = new ActiveStorage();
+    console.log( Post.all );
+    var p = Post.new( {name: "Jesse"} );
+    var p = Post.new( {name: "Jessica"} );
+    console.log( Post.all );
+  </script>
+  </body>
+</html>
