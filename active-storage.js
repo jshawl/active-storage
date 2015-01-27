@@ -4,7 +4,7 @@ var ActiveStorage = function( kind ){
 
 ActiveStorage.prototype = {
   all: function(){
-    if( localStorage.getItem( this.kind ).length ){
+    if( localStorage.getItem( this.kind ) ){
       return JSON.parse( localStorage.getItem( this.kind ) ); 
     } else {
       return [];
