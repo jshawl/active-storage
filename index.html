@@ -4,15 +4,17 @@
   
   </head>
   <body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js'></script>
   <script src='active-storage.js'></script>
   <script>
-    var Post = Object.create( new ActiveStorage() );
+    var Post = Object.create( new ActiveStorage("Post") );
 
-    var p = Post.new({name: "Kesse"});
+    var p = Post.new({name: "Kesse", age: 26});
     p.save();
 
-    Post.create({name: "Jewely"});
-
+    Post.create({name: "Jewely", age: 26});
+    var p = Post.new({name: "Jewely", age: 27});
+    p.save();
     console.log(Post.all);
 
   </script>
