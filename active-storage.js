@@ -4,6 +4,11 @@ var ActiveStorage = function(){
 
 ActiveStorage.prototype = {
   new: function( data ){
-    this.all.push(data);    
+    this.data = data;
+    return this;     
+  },
+  save: function(){
+    this.all.push( this );	
+    return this;
   }
 }

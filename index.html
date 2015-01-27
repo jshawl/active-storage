@@ -6,11 +6,10 @@
   <body>
   <script src='active-storage.js'></script>
   <script>
-    var Post = new ActiveStorage();
-    console.log( Post.all );
-    var p = Post.new( {name: "Jesse"} );
-    var p = Post.new( {name: "Jessica"} );
-    console.log( Post.all );
+    var Post = Object.create( new ActiveStorage() );
+    var p = Post.new({name: "Kesse"});
+    p.save();
+    console.log(Post.all);
   </script>
   </body>
 </html>
