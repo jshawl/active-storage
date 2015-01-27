@@ -1,14 +1,21 @@
-var ActiveStorage = function(){
-  this.all = [];
-}
+var ActiveStorage = function(){ }
 
 ActiveStorage.prototype = {
+  all: [],
   new: function( data ){
     this.data = data;
     return this;     
   },
   save: function(){
-    this.all.push( this );	
+    var self = Object.create( this );
+    for( prop in self.data ){
+      self[prop] = self.data[prop]; 
+    }
+    this.all.push( self );	
     return this;
+  },
+  create: function( data ){
+    this.data = data;
+    this.save();
   }
 }

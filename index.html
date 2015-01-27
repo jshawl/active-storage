@@ -7,9 +7,14 @@
   <script src='active-storage.js'></script>
   <script>
     var Post = Object.create( new ActiveStorage() );
+
     var p = Post.new({name: "Kesse"});
     p.save();
+
+    Post.create({name: "Jewely"});
+
     console.log(Post.all);
+
   </script>
   </body>
 </html>
