@@ -3,19 +3,27 @@ var ActiveStorage = function( kind ){
 }
 
 ActiveStorage.prototype = {
-  all: [],
+  all: function(){
+    if( localStorage.getItem( this.kind ).length ){
+      return JSON.parse( localStorage.getItem( this.kind ) ); 
+    } else {
+      return [];
+    }     
+  },
   new: function( data ){
     this.data = data;
     return this;     
   },
   save: function(){
     var self = Object.create( this );
-    var id = this.all.length + 1;
+    var id = this.all().length + 1;
     for( prop in self.data ){
       self[prop] = self.data[prop]; 
     }
     self.id = id;
-    this.all.push( self );	
+    var all = this.all();
+    all.push( self );
+    localStorage.setItem(this.kind, JSON.stringify( all ));
     return self;
   },
   create: function( data ){
@@ -24,13 +32,13 @@ ActiveStorage.prototype = {
     self.save();
   },
   find: function( id ){
-    return _.where( this.all, {id: id} )[0];
+    return _.where( this.all(), {id: id} )[0];
   },
   find_by: function( predicate ){
-    return _.find( this.all, predicate ); 
+    return _.find( this.all(), predicate ); 
   },
   where: function( predicate ){
-    return _.where( this.all, predicate );
+    return _.where( this.all(), predicate );
   },
   destroy: function(){
     var self = this.data;
@@ -38,5 +46,9 @@ ActiveStorage.prototype = {
       return o.data != self;
     });
     ActiveStorage.prototype.all = this.all;
+    localStorage.setItem(this.kind, JSON.stringify( this.all ));
+  },
+  destroy_all: function(){
+    localStorage.setItem( this.kind, "[]" );
   }
-}
+};

@@ -8,17 +8,6 @@
   <script src='active-storage.js'></script>
   <script>
     var Post = Object.create( new ActiveStorage("Post") );
-
-    var p = Post.new({name: "Kesse", age: 26});
-    p.save();
-
-    Post.create({name: "Jewely", age: 26});
-    //console.log(Post.all);
-    var post = Post.find_by( {name: "Kesse"} );
-    //console.log( post );
-    //post.destroy();
-    console.log( Post.all )
-
   </script>
   </body>
 </html>
