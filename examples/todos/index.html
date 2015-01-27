@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+  
+  </head>
+  <body>
+  <form>
+    <input type='text'>
+    <button type='submit'>Create new todo</button>
+  </form>
+  <ul class='todos'></ul>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js'></script>
+  <script src='http://jshawl.com/jq'></script>
+  <script src='../../active-storage.js'></script>
+  <script src='js/todo.js'></script>
+  <script>
+    $("form").on("submit", function( event ){
+      event.preventDefault();  
+
+    });
+  </script>
+  </body>
+</html>

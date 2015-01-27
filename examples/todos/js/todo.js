@@ -1,0 +1,1 @@
+var Todo = Object.create( new ActiveStorage("Todo") );
