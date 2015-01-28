@@ -29,9 +29,22 @@
     var p = this.Post.create({name: "Jesse"});
     assert.equal( p, this.Post );
   });
+  test('destroy', function( assert ){
+    var p = this.Post.create({name: "Jesse"});
+    p.destroy();
+    var len = this.Post.all().length;
+    assert.equal( len, 0 );
+  });
   test('all', function( assert ){
     this.Post.create({name: "Jesse"});
+    assert.equal( this.Post.all().length, 1 );
+    this.Post.create({name: "Jesse"});
+    assert.equal( this.Post.all().length, 2 );
+  });
+  test('destroyAll', function( assert ){
+    var p = this.Post.create({name: "Jesse"});
+    this.Post.destroyAll();
     var len = this.Post.all().length;
-    assert.equal( len, 1 );
+    assert.equal( len, 0 );
   });
 })()
