@@ -50,12 +50,11 @@ ActiveStorage.prototype = {
     return _.where( this.all(), predicate );
   },
   destroy: function(){
-    var self = this.data;
-    this.all = _.filter( this.all, function( o ){
-      return o.data != self;
+    var self = this;
+    var all = _.filter( self.all(), function( o ){
+      return o.id != self.id; 
     });
-    ActiveStorage.prototype.all = this.all;
-    localStorage.setItem(this.kind, JSON.stringify( this.all ));
+    localStorage.setItem( self.kind, JSON.stringify( all ) );
   },
   destroyAll: function(){
     localStorage.setItem( this.kind, "[]" );
