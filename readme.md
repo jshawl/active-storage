@@ -1,4 +1,4 @@
-# Active Storage ![](https://travis-ci.org/jshawl/active-storage.svg)
+# Active Storage [![Build status indicator](https://travis-ci.org/jshawl/active-storage.svg)](https://travis-ci.org/jshawl/active-storage)
 
 ## Usage
 
