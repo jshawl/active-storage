@@ -11,7 +11,7 @@ ActiveStorage.prototype = {
     }     
   },
   new: function( data ){
-    for( prop in data ){
+    for( var prop in data ){
       this[prop] = data[prop]; 
     }
     return this;     
@@ -34,14 +34,18 @@ ActiveStorage.prototype = {
   },
   find: function( id ){
     var obj = _.where( this.all(), {id: id} )[0];
-    for( prop in obj ){
+    for( var prop in obj ){
       this[prop] = obj[prop];
     }
-    return this;
+    if( obj ){
+      return this;
+    } else {
+      return undefined;
+    }
   },
   findBy: function( predicate ){
     var obj = _.find( this.all(), predicate ); 
-    for( prop in obj ){
+    for( var prop in obj ){
       this[prop] = obj[prop];
     }
     return this;
