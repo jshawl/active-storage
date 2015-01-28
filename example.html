@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+  
+  </head>
+  <body>
+    <form>
+      <input type='text'>
+      <button>add</button>
+    </form>
+    <ul></ul>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js'></script>
+  <script src='active-storage.js'></script>
+  <script>
+
+    var Post = Object.create( new ActiveStorage("Post") );
+    var form = document.querySelector("form");
+    var input = document.querySelector("input");
+    var list = document.querySelector("ul");
+
+    form.addEventListener("submit", function( event ){
+      event.preventDefault();
+      Post.create({ description: input.value }); 
+      render();
+    });
+
+    list.addEventListener("click", function( event ){
+      var id = parseInt(event.target.parentNode.getAttribute("post-id"));
+      var p = Post.find( id );
+      p.destroy();
+      render();
+    });
+
+    function render(){
+      var model = Post.all(); 
+      input.value = '';
+      var i = 0, len = model.length;
+      list.innerHTML = '';
+      for( ; i < len; i++ ){
+	var li = document.createElement("li");
+	li.innerHTML = model[i].description;
+	li.setAttribute("post-id", model[i].id );
+
+	var a = document.createElement("a");
+	a.innerHTML = 'x';
+	a.href = '#';
+
+	li.appendChild( a );
+	list.appendChild( li );
+      }
+    }
+    render();
+  </script>
+  </body>
+</html>
