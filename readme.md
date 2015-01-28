@@ -1,4 +1,4 @@
-# Active Storage
+# Active Storage ![](https://travis-ci.org/jshawl/active-storage.svg)
 
 ## Usage
 
