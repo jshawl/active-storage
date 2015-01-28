@@ -1,0 +1,27 @@
+{
+  "name": "active-storage",
+  "version": "0.0.1",
+  "description": "An ActiveRecord-like interface for querying localStorage",
+  "main": "active-storage.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jshawl/active-storage"
+  },
+  "author": "Jesse Shawl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jshawl/active-storage/issues"
+  },
+  "homepage": "https://github.com/jshawl/active-storage",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-qunit": "^1.2.1",
+    "gulp-util": "^3.0.2"
+  }
+}
