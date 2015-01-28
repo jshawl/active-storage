@@ -11,31 +11,40 @@ ActiveStorage.prototype = {
     }     
   },
   new: function( data ){
-    this.data = data;
+    for( prop in data ){
+      this[prop] = data[prop]; 
+    }
     return this;     
   },
   save: function(){
-    var self = Object.create( this );
-    var id = this.all().length + 1;
-    for( prop in self.data ){
-      self[prop] = self.data[prop]; 
-    }
-    self.id = id;
     var all = this.all();
-    all.push( self );
+    if( !this.id ){
+      this.id = this.all().length + 1;
+      all.push( this );
+    } else {
+      all[this.id - 1] = this;
+    }
     localStorage.setItem(this.kind, JSON.stringify( all ));
-    return self;
+    return this;
   },
   create: function( data ){
-    var self = Object.create( this );
-    self.data = data;
-    self.save();
+    this.new( data );
+    this.id = false;
+    this.save();
   },
   find: function( id ){
-    return _.where( this.all(), {id: id} )[0];
+    var obj = _.where( this.all(), {id: id} )[0];
+    for( prop in obj ){
+      this[prop] = obj[prop];
+    }
+    return this;
   },
   findBy: function( predicate ){
-    return _.find( this.all(), predicate ); 
+    var obj = _.find( this.all(), predicate ); 
+    for( prop in obj ){
+      this[prop] = obj[prop];
+    }
+    return this;
   },
   where: function( predicate ){
     return _.where( this.all(), predicate );
