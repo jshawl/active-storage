@@ -19,7 +19,7 @@ ActiveStorage.prototype = {
   save: function(){
     var all = this.all();
     if( !this.id ){
-      this.id = this.all().length + 1;
+      this.id = all.length + 1;
       all.push( this );
     } else {
       all[this.id - 1] = this;
