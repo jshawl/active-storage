@@ -25,4 +25,8 @@
     p = this.Post.find( 100 );
     assert.equal( p, undefined );
   });
+  test('create', function( assert ){
+    var p = this.Post.create({name: "Jesse"});
+    assert.equal( p, this.Post );
+  });
 })()

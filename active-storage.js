@@ -31,6 +31,7 @@ ActiveStorage.prototype = {
     this.new( data );
     this.id = false;
     this.save();
+    return this;
   },
   find: function( id ){
     var obj = _.where( this.all(), {id: id} )[0];
