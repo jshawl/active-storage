@@ -29,4 +29,9 @@
     var p = this.Post.create({name: "Jesse"});
     assert.equal( p, this.Post );
   });
+  test('all', function( assert ){
+    this.Post.create({name: "Jesse"});
+    var len = this.Post.all().length;
+    assert.equal( len, 1 );
+  });
 })()
