@@ -4,11 +4,52 @@ var ActiveStorage = (function(){
     this.kind = kind;
   }
 
-  function propify( self, data ){
+  var propify = function( self, data ){
     for( var prop in data ){
       self[prop] = data[prop]; 
     }
     return self;     
+  }
+
+  var where = function( collection, predicate ){
+    var i = 0, len = collection.length
+    var foundCollection = []
+    for ( ; i < len; i++ ){
+      var model = collection[i] 
+      for( var prop in predicate ){
+        if( predicate[prop] == model[prop] ){
+	  foundCollection.push( model )
+	}
+      }
+    }
+    return foundCollection
+  }
+
+  var find = function( collection, predicate ){
+    return where( collection, predicate )[0] 
+  }
+
+  var map = function( collection, callback){
+    var i = 0, len = collection.length
+    var results = []
+    for( ; i < len; i++ ){
+      var model = collection[i]
+      model = callback( model )
+      results.push( model )
+    }
+    return results
+  }
+
+  var filter = function( collection, condition ){
+    var i = 0, len = collection.length
+    var results = []
+    for( ; i < len; i++ ){
+      var model = collection[i]
+      if( condition( model ) ){
+        results.push( model ) 
+      }
+    }
+    return results
   }
 
   ActiveStorage.prototype = {
@@ -42,7 +83,7 @@ var ActiveStorage = (function(){
       return propify( this, data ).save();
     },
     find: function( id ){
-      var obj = _.where( this.all(), {id: id} )[0];
+      var obj = find( this.all(), {id: id} );
       if( obj ){
 	return propify( this, obj );
       } else {
@@ -50,7 +91,7 @@ var ActiveStorage = (function(){
       }
     },
     findBy: function( predicate ){
-      var obj = _.find( this.all(), predicate ); 
+      var obj = find( this.all(), predicate ); 
       if( obj ){
 	return propify( this, obj );
       } else {
@@ -58,15 +99,15 @@ var ActiveStorage = (function(){
       }
     },
     where: function( predicate ){
-      var all = _.where( this.all(), predicate );
+      var all = where( this.all(), predicate );
       var self = this;
-      return _.map( all, function( o ){
+      return map( all, function( o ){
         return propify( self, o ); 
       });
     },
     destroy: function(){
       var self = this;
-      var all = _.filter( self.all(), function( o ){
+      var all = filter( self.all(), function( o ){
 	return o.id != self.id; 
       });
       localStorage.setItem( self.kind, JSON.stringify( all ) );

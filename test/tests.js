@@ -19,9 +19,9 @@
     assert.notEqual( p.destroy, undefined);
   });
   test('find', function( assert ){
-    this.Post.create({name: "Jesse"});
-    var p = this.Post.find( 1 );
-    assert.equal( p, this.Post );
+    var p = this.Post.create({name: "Jesse"});
+    var found = this.Post.find( 1 );
+    assert.equal( p, found );
     p = this.Post.find( 100 );
     assert.equal( p, undefined );
   });
@@ -43,7 +43,7 @@
     var p = this.Post.create({name: "Jesse"});
     var len = this.Post.all().length;
     p.destroy();
-    assert.equal( len, 1 );
+    assert.notEqual( len, this.Post.all().length );
   });
   test('all', function( assert ){
     this.Post.create({name: "Jesse"});
@@ -67,7 +67,7 @@
     assert.equal( this.Post.all().length, 1, "it should be in the collection");
   });
   test('where', function( assert ){
-    this.Post.create({name: "Jesse"});
+    this.Post.create({name: "Jesse", age: 26 });
     var where = this.Post.where({name: "Jesse"});
     assert.equal( where.constructor, Array, "it should return an array");
     assert.equal( where[0], this.Post, "it should return an array of posts");
