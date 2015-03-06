@@ -1,4 +1,4 @@
-# Active Storage [![Build status indicator](https://travis-ci.org/jshawl/active-storage.svg)](https://travis-ci.org/jshawl/active-storage)
+# Active Storage [![Build status indicator](https://travis-ci.org/jshawl/active-storage.svg)](https://travis-ci.org/jshawl/active-storage) [![Coverage Status](https://coveralls.io/repos/jshawl/active-storage/badge.svg)](https://coveralls.io/r/jshawl/active-storage)
 
 ## Usage
 
